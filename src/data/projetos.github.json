@@ -1,0 +1,80 @@
+[
+  {
+    "id": "guia-aventura",
+    "titulo": "guia-aventura",
+    "resumo": "sem descrição",
+    "linguagem": "Vue",
+    "topicos": [],
+    "url": "https://github.com/Juliodbc/guia-aventura",
+    "demo": null,
+    "estrelas": 0,
+    "criadoEm": "2026-09-16T17:32:13Z",
+    "atualizadoEm": "2026-09-16T17:32:25Z",
+    "semDescricao": true
+  },
+  {
+    "id": "Album",
+    "titulo": "Album",
+    "resumo": "sem descrição",
+    "linguagem": "TypeScript",
+    "topicos": [],
+    "url": "https://github.com/Juliodbc/Album",
+    "demo": null,
+    "estrelas": 0,
+    "criadoEm": "2026-06-03T18:50:07Z",
+    "atualizadoEm": "2026-07-15T17:22:17Z",
+    "semDescricao": true
+  },
+  {
+    "id": "LivrosApp",
+    "titulo": "LivrosApp",
+    "resumo": "sem descrição",
+    "linguagem": "Vue",
+    "topicos": [],
+    "url": "https://github.com/Juliodbc/LivrosApp",
+    "demo": null,
+    "estrelas": 0,
+    "criadoEm": "2026-04-28T16:48:25Z",
+    "atualizadoEm": "2026-04-28T18:47:46Z",
+    "semDescricao": true
+  },
+  {
+    "id": "carolina-site",
+    "titulo": "carolina-site",
+    "resumo": "sem descrição",
+    "linguagem": null,
+    "topicos": [],
+    "url": "https://github.com/Juliodbc/carolina-site",
+    "demo": null,
+    "estrelas": 0,
+    "criadoEm": "2026-04-17T11:43:07Z",
+    "atualizadoEm": "2026-04-17T11:43:07Z",
+    "semDescricao": true
+  },
+  {
+    "id": "Julio-MVC",
+    "titulo": "Julio-MVC",
+    "resumo": "sem descrição",
+    "linguagem": null,
+    "topicos": [],
+    "url": "https://github.com/Juliodbc/Julio-MVC",
+    "demo": null,
+    "estrelas": 0,
+    "criadoEm": "2026-04-01T19:25:43Z",
+    "atualizadoEm": "2026-04-01T19:25:43Z",
+    "semDescricao": true
+  },
+  {
+    "id": "meuApp",
+    "titulo": "meuApp",
+    "resumo": "sem descrição",
+    "linguagem": "TypeScript",
+    "topicos": [],
+    "url": "https://github.com/Juliodbc/meuApp",
+    "demo": null,
+    "estrelas": 0,
+    "criadoEm": "2026-03-11T17:20:01Z",
+    "atualizadoEm": "2026-03-24T19:15:19Z",
+    "semDescricao": true
+  }
+]

@@ -1,0 +1,17 @@
+* { box-sizing: border-box; }
+html { background: var(--portfolio-background); scroll-behavior: smooth; }
+body { margin: 0; background: var(--portfolio-background); color: var(--portfolio-text); font-family: var(--portfolio-font-body); -webkit-font-smoothing: antialiased; }
+ion-app { background: var(--portfolio-background); }
+ion-content { --padding-bottom: 0; }
+a, button, input, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--portfolio-accent); outline-offset: 3px; }
+.eyebrow { color: var(--portfolio-accent); font: 600 .68rem var(--portfolio-font-mono); letter-spacing: .16em; text-transform: uppercase; }
+.section-block { margin-top: clamp(3rem, 8vw, 5.5rem); }
+.section-link { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; color: var(--portfolio-text); text-decoration: none; font-size: .82rem; font-weight: 600; }.section-link span { color: var(--portfolio-accent); }
+.project-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+.button-row { display: flex; flex-wrap: wrap; gap: .75rem; }
+.surface-card { border: 1px solid var(--portfolio-border); border-radius: var(--radius-card-large); padding: clamp(1.25rem, 4vw, 2rem); background: linear-gradient(145deg, var(--portfolio-surface-raised), var(--portfolio-surface)); }
+@media (min-width: 640px) { .project-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.25rem; } .skill-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+@media (min-width: 980px) { .project-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } .skill-grid { grid-template-columns: repeat(4, minmax(0,1fr)); } }

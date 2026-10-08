@@ -1,0 +1,54 @@
+:root {
+  color-scheme: dark;
+
+  /* Brand palette */
+  --portfolio-background: #0a0a0c;
+  --portfolio-background-raised: #17171b;
+  --portfolio-surface: #151518;
+  --portfolio-surface-raised: #1e1e22;
+  --portfolio-border: #2a2a30;
+  --portfolio-accent: #ff5a1f;
+  --portfolio-accent-pressed: #e84a12;
+  --portfolio-accent-glow: rgb(255 90 31 / 18%);
+  --portfolio-text: #ffffff;
+  --portfolio-text-muted: #9a9aa3;
+  --portfolio-text-disabled: #5c5c65;
+  --portfolio-online: #34d17a;
+
+  /* Typography: bundled font packages can replace these fallbacks in a later phase. */
+  --portfolio-font-display: 'Space Grotesk', 'Arial', sans-serif;
+  --portfolio-font-body: 'Inter', 'Arial', sans-serif;
+  --portfolio-font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* 8px spacing rhythm */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+
+  --radius-card: 1.25rem;
+  --radius-card-large: 1.5rem;
+  --radius-pill: 999px;
+  --content-width: 72rem;
+
+  --ion-background-color: var(--portfolio-background);
+  --ion-text-color: var(--portfolio-text);
+  --ion-color-primary: var(--portfolio-accent);
+  --ion-color-primary-rgb: 255, 90, 31;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #e04f1b;
+  --ion-color-primary-tint: #ff6b35;
+}
+
+html,
+body,
+#app {
+  min-width: 320px;
+  min-height: 100%;
+  background: var(--portfolio-background);
+  color: var(--portfolio-text);
+  font-family: var(--portfolio-font-body);
+}
