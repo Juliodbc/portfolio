@@ -5,4 +5,6 @@
 .status-dot { width: .45rem; height: .45rem; border-radius: 50%; background: var(--portfolio-text-disabled); }
 .live { border-color: color-mix(in srgb, var(--portfolio-online) 28%, var(--portfolio-border)); color: var(--portfolio-text); }
 .live .status-dot { background: var(--portfolio-online); box-shadow: 0 0 0 .25rem color-mix(in srgb, var(--portfolio-online) 13%, transparent); }
+.live .status-dot { animation: status-pulse 2.3s ease-out infinite; }
+@keyframes status-pulse { 50% { box-shadow: 0 0 0 .5rem color-mix(in srgb, var(--portfolio-online) 0%, transparent); } }
 </style>

@@ -1,5 +1,7 @@
 const pt = {
   nav_main: 'Navegacao principal',
+  meta_title: 'Julio Correa - Portfolio', meta_description: 'Portfolio de Julio Correa, desenvolvedor web e mobile em formacao.',
+  home_artAlt: 'Monograma JC com tecnologias em orbita', about_education: 'FORMACAO',
   nav_home: 'Início', nav_projects: 'Projetos', nav_about: 'Sobre', nav_contact: 'Contato',
   header_contact: 'Vamos conversar', footer_location: 'JOINVILLE, BR', footer_github: 'GITHUB',
   status_available: 'Disponível para projetos',
@@ -24,6 +26,8 @@ const pt = {
 
 const en: Record<keyof typeof pt, string> = {
   nav_main: 'Main navigation',
+  meta_title: 'Julio Correa - Portfolio', meta_description: 'Professional portfolio of Julio Correa, a web and mobile developer in training.',
+  home_artAlt: 'JC monogram with technology orbits', about_education: 'EDUCATION',
   nav_home: 'Home', nav_projects: 'Projects', nav_about: 'About', nav_contact: 'Contact',
   header_contact: "Let's talk", footer_location: 'JOINVILLE, BRAZIL', footer_github: 'GITHUB',
   status_available: 'Available for projects',

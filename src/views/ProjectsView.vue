@@ -1,7 +1,7 @@
 <template>
   <PageFrame>
     <div class="page-intro"><p class="eyebrow">03 / {{ t('projects.eyebrow') }}</p><h1>{{ t('projects.title') }}</h1><p class="intro-copy">{{ t('projects.subtitle') }}</p></div>
-    <section class="filters section-block" aria-label="Project filters"><label class="search-box"><span aria-hidden="true">&#8981;</span><input v-model="query" type="search" :placeholder="t('projects.search')" :aria-label="t('projects.search')" /></label><div class="filter-row"><button v-for="tech in technologies" :key="tech" class="filter-chip" :class="{ selected: selectedTech === tech }" type="button" @click="selectedTech = tech">{{ tech }}</button></div><p class="results-count">{{ filteredProjects.length }} {{ t('projects.count') }}</p></section>
+    <section class="filters section-block" :aria-label="t('projects.eyebrow')"><label class="search-box"><span aria-hidden="true">&#8981;</span><input v-model="query" type="search" :placeholder="t('projects.search')" :aria-label="t('projects.search')" /></label><div class="filter-row"><button v-for="tech in technologies" :key="tech" class="filter-chip" :class="{ selected: selectedTech === tech }" type="button" @click="selectedTech = tech">{{ tech }}</button></div><p class="results-count">{{ filteredProjects.length }} {{ t('projects.count') }}</p></section>
     <section class="project-grid" aria-live="polite"><CardProjeto v-for="projeto in filteredProjects" :key="projeto.id" :project="projeto" v-reveal /><div v-if="!filteredProjects.length" class="empty-state surface-card"><p class="eyebrow">{{ t('projects.emptyLabel') }}</p><h2>{{ t('projects.empty') }}</h2><button type="button" class="reset-button" @click="resetFilters">{{ t('projects.clear') }}</button></div></section>
   </PageFrame>
 </template>

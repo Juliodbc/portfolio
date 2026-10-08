@@ -12,7 +12,7 @@
           <span class="action-secondary" aria-disabled="true" :title="t('home.resumeTodo')">{{ t('home.resume') }} <span>TODO</span></span>
         </div>
       </div>
-      <div class="hero-art" aria-label="JC monogram with technology orbits">
+      <div class="hero-art" :aria-label="t('home.artAlt')">
         <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
         <div class="orbit-chip chip-vue">Vue</div><div class="orbit-chip chip-ts">TS</div><div class="orbit-chip chip-ionic">Ionic</div>
         <div class="monogram"><span>JC</span><i>SC &middot; BR</i></div>

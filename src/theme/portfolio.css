@@ -1,6 +1,7 @@
 * { box-sizing: border-box; }
 html { background: var(--portfolio-background); scroll-behavior: smooth; }
 body { margin: 0; background: var(--portfolio-background); color: var(--portfolio-text); font-family: var(--portfolio-font-body); -webkit-font-smoothing: antialiased; }
+body::before { position: fixed; z-index: 0; inset: 0; background-image: radial-gradient(color-mix(in srgb, var(--portfolio-text-muted) 12%, transparent) 1px, transparent 1px); background-size: 28px 28px; content: ''; opacity: .18; pointer-events: none; }
 ion-app { background: var(--portfolio-background); }
 ion-content { --padding-bottom: 0; }
 a, button, input, textarea { font: inherit; }
@@ -18,9 +19,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .reveal-on-scroll { opacity: 0; transform: translateY(1rem); transition: opacity .55s ease, transform .55s ease; }
 .reveal-on-scroll.is-revealed { opacity: 1; transform: translateY(0); }
+.project-grid .reveal-on-scroll:nth-child(2) { transition-delay: .07s; }
+.project-grid .reveal-on-scroll:nth-child(3) { transition-delay: .14s; }
+.project-grid .reveal-on-scroll:nth-child(4) { transition-delay: .21s; }
 .orbit-one { animation: orbit-drift 18s linear infinite; }
 .orbit-two { animation: orbit-drift 23s linear infinite reverse; }
 .orbit-three { animation: orbit-drift 27s linear infinite; }
+.ring { animation: ring-enter .8s ease both; }
+@keyframes ring-enter { from { opacity: .45; transform: rotate(-70deg) scale(.88); } to { opacity: 1; transform: rotate(0) scale(1); } }
 @keyframes orbit-drift { to { transform: rotate(325deg) scaleY(.45); } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
