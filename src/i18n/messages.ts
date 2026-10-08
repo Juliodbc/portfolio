@@ -1,4 +1,5 @@
-﻿const pt = {
+const pt = {
+  nav_main: 'Navegacao principal',
   nav_home: 'Início', nav_projects: 'Projetos', nav_about: 'Sobre', nav_contact: 'Contato',
   header_contact: 'Vamos conversar', footer_location: 'JOINVILLE, BR', footer_github: 'GITHUB',
   status_available: 'Disponível para projetos',
@@ -22,6 +23,7 @@
 } as const;
 
 const en: Record<keyof typeof pt, string> = {
+  nav_main: 'Main navigation',
   nav_home: 'Home', nav_projects: 'Projects', nav_about: 'About', nav_contact: 'Contact',
   header_contact: "Let's talk", footer_location: 'JOINVILLE, BRAZIL', footer_github: 'GITHUB',
   status_available: 'Available for projects',

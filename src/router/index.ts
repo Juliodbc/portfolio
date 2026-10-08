@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/sobre', component: () => import('@/views/AboutView.vue') },
   { path: '/habilidades', component: () => import('@/views/SkillsView.vue') },
   { path: '/contato', component: () => import('@/views/ContactView.vue') },
-  { path: '/:pathMatch(.*)*', redirect: '/inicio' },
+  { path: '/:pathMatch(.*)*', component: () => import('@/views/NotFoundView.vue') },
 ];
 
 const router = createRouter({

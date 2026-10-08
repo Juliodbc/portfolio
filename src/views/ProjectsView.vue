@@ -1,34 +1,31 @@
 <template>
   <PageFrame>
-    <div class="page-intro"><p class="eyebrow">03 / PROVA DE TRABALHO</p><h1>Projetos <span>selecionados.</span></h1><p class="intro-copy">Estudos de caso e repositórios públicos. Use a busca ou filtre pela stack.</p></div>
-    <section class="filters section-block" aria-label="Filtros de projetos">
-      <label class="search-box"><span aria-hidden="true">⌕</span><input v-model="query" type="search" placeholder="Buscar projeto..." aria-label="Buscar projeto" /></label>
-      <div class="filter-row"><button v-for="tech in technologies" :key="tech" class="filter-chip" :class="{ selected: selectedTech === tech }" type="button" @click="selectedTech = tech">{{ tech }}</button></div>
-      <p class="results-count">{{ filteredProjects.length }} projeto(s)</p>
-    </section>
-    <section class="project-grid" aria-live="polite">
-      <CardProjeto v-for="projeto in filteredProjects" :key="projeto.id" :project="projeto" />
-      <div v-if="!filteredProjects.length" class="empty-state surface-card"><p class="eyebrow">SEM RESULTADOS</p><h2>Nenhum projeto encontrado.</h2><button type="button" class="reset-button" @click="resetFilters">Limpar filtros</button></div>
-    </section>
+    <div class="page-intro"><p class="eyebrow">03 / {{ t('projects.eyebrow') }}</p><h1>{{ t('projects.title') }}</h1><p class="intro-copy">{{ t('projects.subtitle') }}</p></div>
+    <section class="filters section-block" aria-label="Project filters"><label class="search-box"><span aria-hidden="true">&#8981;</span><input v-model="query" type="search" :placeholder="t('projects.search')" :aria-label="t('projects.search')" /></label><div class="filter-row"><button v-for="tech in technologies" :key="tech" class="filter-chip" :class="{ selected: selectedTech === tech }" type="button" @click="selectedTech = tech">{{ tech }}</button></div><p class="results-count">{{ filteredProjects.length }} {{ t('projects.count') }}</p></section>
+    <section class="project-grid" aria-live="polite"><CardProjeto v-for="projeto in filteredProjects" :key="projeto.id" :project="projeto" v-reveal /><div v-if="!filteredProjects.length" class="empty-state surface-card"><p class="eyebrow">{{ t('projects.emptyLabel') }}</p><h2>{{ t('projects.empty') }}</h2><button type="button" class="reset-button" @click="resetFilters">{{ t('projects.clear') }}</button></div></section>
   </PageFrame>
 </template>
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import CardProjeto from '@/components/CardProjeto.vue';
 import PageFrame from '@/components/PageFrame.vue';
+import { useLocale } from '@/composables/useLocale';
 import { projetos } from '@/data/projetos';
+import { localizeProject } from '@/i18n/projectTranslations';
+const { locale, t } = useLocale();
 const query = ref('');
-const selectedTech = ref('Todas');
-const technologies = computed(() => ['Todas', ...new Set(projetos.flatMap((projeto) => projeto.stack))]);
+const selectedTech = ref('');
+const allLocalizedProjects = computed(() => projetos.map((projeto) => localizeProject(projeto, locale.value)));
+const technologies = computed(() => [t('projects.all'), ...new Set(allLocalizedProjects.value.flatMap((projeto) => projeto.stack))]);
 const filteredProjects = computed(() => {
-  const needle = query.value.trim().toLocaleLowerCase('pt-BR');
-  return projetos.filter((projeto) => {
-    const matchesQuery = !needle || [projeto.titulo, projeto.resumo, ...projeto.stack].join(' ').toLocaleLowerCase('pt-BR').includes(needle);
-    const matchesTech = selectedTech.value === 'Todas' || projeto.stack.includes(selectedTech.value);
+  const needle = query.value.trim().toLocaleLowerCase(locale.value === 'pt' ? 'pt-BR' : 'en');
+  return allLocalizedProjects.value.filter((projeto) => {
+    const matchesQuery = !needle || [projeto.titulo, projeto.resumo, ...projeto.stack].join(' ').toLocaleLowerCase().includes(needle);
+    const matchesTech = !selectedTech.value || selectedTech.value === t('projects.all') || projeto.stack.includes(selectedTech.value);
     return matchesQuery && matchesTech;
   });
 });
-function resetFilters() { query.value = ''; selectedTech.value = 'Todas'; }
+function resetFilters() { query.value = ''; selectedTech.value = ''; }
 </script>
 <style scoped>
 .page-intro{max-width:48rem;padding-top:2rem}.page-intro h1{margin:.8rem 0;font:600 clamp(2.8rem,9vw,5.2rem)/.98 var(--portfolio-font-display);letter-spacing:-.08em}.page-intro h1 span{color:var(--portfolio-accent)}.intro-copy{color:var(--portfolio-text-muted);line-height:1.6}

@@ -1,10 +1,12 @@
-<template><nav class="floating-tabs" aria-label="Navegação principal"><RouterLink v-for="item in items" :key="item.to" :to="item.to" class="tab-link" :class="{ active: isActive(item.to) }" :aria-current="isActive(item.to) ? 'page' : undefined"><ion-icon :icon="item.icon" aria-hidden="true" /><span>{{ item.label }}</span></RouterLink></nav></template>
+<template><nav class="floating-tabs" :aria-label="t('nav.main')"><RouterLink v-for="item in items" :key="item.to" :to="item.to" class="tab-link" :class="{ active: isActive(item.to) }" :aria-current="isActive(item.to) ? 'page' : undefined"><ion-icon :icon="item.icon" aria-hidden="true" /><span>{{ t(item.key) }}</span></RouterLink></nav></template>
 <script setup lang="ts">
 import { IonIcon } from '@ionic/vue';
 import { callOutline, homeOutline, personOutline, layersOutline } from 'ionicons/icons';
 import { useRoute } from 'vue-router';
+import { useLocale } from '@/composables/useLocale';
 const route = useRoute();
-const items = [{ label: 'Início', to: '/inicio', icon: homeOutline }, { label: 'Projetos', to: '/projetos', icon: layersOutline }, { label: 'Sobre', to: '/sobre', icon: personOutline }, { label: 'Contato', to: '/contato', icon: callOutline }];
+const { t } = useLocale();
+const items = [{ key: 'nav.home', to: '/inicio', icon: homeOutline }, { key: 'nav.projects', to: '/projetos', icon: layersOutline }, { key: 'nav.about', to: '/sobre', icon: personOutline }, { key: 'nav.contact', to: '/contato', icon: callOutline }];
 function isActive(path: string) { return route.path === path || (path === '/projetos' && route.path.startsWith('/projetos/')); }
 </script>
 <style scoped>

@@ -1,4 +1,10 @@
 import { createApp } from 'vue'
+import '@fontsource-variable/inter';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/600.css';
+import { registerSW } from 'virtual:pwa-register';
+import { scrollReveal } from './composables/scrollReveal';
 import App from './App.vue'
 import router from './router';
 
@@ -36,7 +42,10 @@ import './theme/variables.css';
 import './theme/tokens.css';
 import './theme/portfolio.css';
 
+if (import.meta.env.PROD) registerSW({ immediate: true });
+
 const app = createApp(App)
+  .directive('reveal', scrollReveal)
   .use(IonicVue)
   .use(router);
 

@@ -2,40 +2,35 @@
   <PageFrame>
     <section class="hero">
       <div class="hero-copy">
-        <StatusChip label="Disponível para projetos" :online="true" />
-        <p class="hero-greeting">PORTFÓLIO <span>/ 2026</span></p>
-        <h1>Olá, eu sou<br /><span>o Julio.</span></h1>
-        <p class="hero-role">{{ perfil.cargo }} <span>· {{ perfil.cidade }}</span></p>
-        <p class="hero-lede">Construo experiências web e mobile com atenção ao que acontece por trás da tela.</p>
+        <StatusChip :label="t('status.available')" :online="true" />
+        <p class="hero-greeting">{{ t('home.label') }} <span>/ 2026</span></p>
+        <h1>{{ t('home.greeting') }}<br /><span>Julio.</span></h1>
+        <p class="hero-role">{{ localProfile.cargo }} <span>&middot; {{ perfil.cidade }}</span></p>
+        <p class="hero-lede">{{ t('home.lede') }}</p>
         <div class="button-row hero-actions">
-          <RouterLink to="/projetos" class="action-primary">Ver projetos <span aria-hidden="true">↗</span></RouterLink>
-          <span class="action-secondary" aria-disabled="true" title="TODO: adicionar arquivo PDF">Baixar currículo <span>TODO</span></span>
+          <RouterLink to="/projetos" class="action-primary">{{ t('home.projects') }} <span aria-hidden="true">&rarr;</span></RouterLink>
+          <span class="action-secondary" aria-disabled="true" :title="t('home.resumeTodo')">{{ t('home.resume') }} <span>TODO</span></span>
         </div>
       </div>
-      <div class="hero-art" aria-label="Monograma JC cercado por tecnologias em órbita">
+      <div class="hero-art" aria-label="JC monogram with technology orbits">
         <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
         <div class="orbit-chip chip-vue">Vue</div><div class="orbit-chip chip-ts">TS</div><div class="orbit-chip chip-ionic">Ionic</div>
-        <div class="monogram"><span>JC</span><i>SC · BR</i></div>
-        <div class="art-caption">DESIGN <b>·</b> WEB <b>·</b> MOBILE</div>
+        <div class="monogram"><span>JC</span><i>SC &middot; BR</i></div>
+        <div class="art-caption">DESIGN <b>&middot;</b> WEB <b>&middot;</b> MOBILE</div>
       </div>
     </section>
-
-    <section class="metric-grid" aria-label="Resumo do portfólio">
-      <MetricCard :value="String(projetos.length).padStart(2, '0')" label="Projetos no portfólio" />
-      <MetricCard :value="String(habilidades.length).padStart(2, '0')" label="Tecnologias e ferramentas" />
-      <MetricCard :value="String(projetosGithub.length).padStart(2, '0')" label="Repositórios públicos" />
+    <section class="metric-grid" aria-label="Portfolio summary">
+      <MetricCard :value="String(projects.length).padStart(2, '0')" :label="t('home.metricProjects')" />
+      <MetricCard :value="String(habilidades.length).padStart(2, '0')" :label="t('home.metricSkills')" />
+      <MetricCard :value="String(projectsGithub.length).padStart(2, '0')" :label="t('home.metricRepos')" />
     </section>
-
-    <section class="section-block">
-      <SecaoTitulo title="Trabalho em destaque" eyebrow="Selecionados">
-        <RouterLink to="/projetos" class="section-link">Todos os projetos <span>↗</span></RouterLink>
-      </SecaoTitulo>
+    <section class="section-block" v-reveal>
+      <SecaoTitulo :title="t('home.featured')" :eyebrow="t('home.selected')"><RouterLink to="/projetos" class="section-link">{{ t('home.allProjects') }} <span>&rarr;</span></RouterLink></SecaoTitulo>
       <div class="project-grid"><CardProjeto v-for="projeto in destaques" :key="projeto.id" :project="projeto" /></div>
     </section>
-
-    <section class="closing-card section-block">
-      <div><p class="eyebrow">PRÓXIMO PASSO</p><h2>Tem um projeto em mente?</h2><p>Vamos conversar sobre o que você está construindo.</p></div>
-      <RouterLink to="/contato" class="action-primary">Fale comigo <span aria-hidden="true">↗</span></RouterLink>
+    <section class="closing-card section-block" v-reveal>
+      <div><p class="eyebrow">{{ t('home.next') }}</p><h2>{{ t('home.ctaTitle') }}</h2><p>{{ t('home.ctaBody') }}</p></div>
+      <RouterLink to="/contato" class="action-primary">{{ t('home.cta') }} <span aria-hidden="true">&rarr;</span></RouterLink>
     </section>
   </PageFrame>
 </template>
@@ -46,12 +41,17 @@ import MetricCard from '@/components/MetricCard.vue';
 import PageFrame from '@/components/PageFrame.vue';
 import SecaoTitulo from '@/components/SecaoTitulo.vue';
 import StatusChip from '@/components/StatusChip.vue';
+import { useLocale } from '@/composables/useLocale';
 import { habilidades } from '@/data/habilidades';
 import { perfil } from '@/data/perfil';
 import { projetos } from '@/data/projetos';
 import githubData from '@/data/projetos.github.json';
+import { localizeProfile } from '@/i18n/profileTranslations';
+const { locale, t } = useLocale();
+const localProfile = computed(() => localizeProfile(perfil, locale.value));
 const destaques = computed(() => projetos.filter((projeto) => projeto.destaque).slice(0, 4));
-const projetosGithub = githubData;
+const projects = projetos;
+const projectsGithub = githubData;
 </script>
 <style scoped>
 .hero { display: grid; align-items: center; gap: 2rem; min-height: 28rem; padding: 1.2rem 0 2rem; }

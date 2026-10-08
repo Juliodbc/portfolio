@@ -33,7 +33,8 @@ const english: Record<string, Partial<Projeto>> = {
 
 export function localizeProject(project: Projeto, locale: Locale): Projeto {
   const overrides = locale === 'en' ? english[project.id] : undefined;
-  return { ...project, ...overrides };
+  const noDescription = locale === 'en' && project.resumo.toLocaleLowerCase('pt-BR').startsWith('sem descri');
+  return { ...project, ...overrides, ...(noDescription ? { resumo: 'No description yet.' } : {}) };
 }
 
 export function localizeStatus(value: string, locale: Locale): string {

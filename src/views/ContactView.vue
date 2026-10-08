@@ -1,17 +1,16 @@
 <template>
   <PageFrame>
-    <div class="page-intro"><p class="eyebrow">04 / CONVERSA</p><h1>Vamos falar <span>sobre ideias.</span></h1><p class="intro-copy">Escolha um canal direto ou deixe uma mensagem para abrir no seu app de e-mail ou WhatsApp.</p></div>
+    <div class="page-intro"><p class="eyebrow">04 / {{ t('contact.eyebrow') }}</p><h1>{{ t('contact.title') }}</h1><p class="intro-copy">{{ t('contact.subtitle') }}</p></div>
     <div class="contact-layout section-block">
-      <section class="channels"><SecaoTitulo title="Canais diretos" eyebrow="Contato" />
-        <BotaoContato label="GitHub" href="https://github.com/Juliodbc" :icon="logoGithub" :external="true" />
-        <div class="channel-placeholder"><ion-icon :icon="logoLinkedin" aria-hidden="true" /><div><b>LinkedIn</b><span>{{ perfil.linkedin }}</span></div></div>
-        <div class="channel-placeholder"><ion-icon :icon="mailOutline" aria-hidden="true" /><div><b>E-mail</b><span>{{ perfil.email }}</span></div></div>
-        <div class="channel-placeholder"><ion-icon :icon="logoWhatsapp" aria-hidden="true" /><div><b>WhatsApp</b><span>{{ perfil.whatsapp }}</span></div></div>
-        <div class="resume-card surface-card"><div><b>Currículo em PDF</b><span>Arquivo local: {{ perfil.curriculo }}</span></div><button type="button" disabled>TODO</button></div>
+      <section class="channels"><SecaoTitulo :title="t('contact.channels')" :eyebrow="t('nav.contact')" /><BotaoContato label="GitHub" href="https://github.com/Juliodbc" :icon="logoGithub" :external="true" />
+        <div class="channel-placeholder"><ion-icon :icon="logoLinkedin" aria-hidden="true" /><div><b>{{ t('contact.linkedin') }}</b><span>{{ perfil.linkedin }}</span></div></div>
+        <div class="channel-placeholder"><ion-icon :icon="mailOutline" aria-hidden="true" /><div><b>{{ t('contact.email') }}</b><span>{{ perfil.email }}</span></div></div>
+        <div class="channel-placeholder"><ion-icon :icon="logoWhatsapp" aria-hidden="true" /><div><b>{{ t('contact.whatsapp') }}</b><span>{{ perfil.whatsapp }}</span></div></div>
+        <div class="resume-card surface-card"><div><b>{{ t('contact.resume') }}</b><span>{{ t('contact.resumeFile') }} {{ perfil.curriculo }}</span></div><button type="button" disabled>TODO</button></div>
       </section>
-      <section class="message-card surface-card"><p class="eyebrow">MENSAGEM RÁPIDA</p><h2>Me conte um pouco.</h2><form @submit.prevent="sendMessage"><label>Assunto<input v-model="subject" required maxlength="100" placeholder="Ex.: oportunidade de estágio" /></label><label>Mensagem<textarea v-model="message" required rows="5" maxlength="1200" placeholder="Oi, Julio! Quero conversar sobre..." /></label><button class="send-button" type="submit">{{ readyToContact ? 'Abrir mensagem' : 'Preparar mensagem' }} <span aria-hidden="true">↗</span></button></form><p v-if="formFeedback" class="form-feedback" role="status">{{ formFeedback }}</p></section>
+      <section class="message-card surface-card"><p class="eyebrow">{{ t('contact.message') }}</p><h2>{{ t('contact.tell') }}</h2><form @submit.prevent="sendMessage"><label>{{ t('contact.subject') }}<input v-model="subject" required maxlength="100" :placeholder="t('contact.subjectPlaceholder')" /></label><label>{{ t('contact.messageLabel') }}<textarea v-model="message" required rows="5" maxlength="1200" :placeholder="t('contact.messagePlaceholder')" /></label><button class="send-button" type="submit">{{ t('contact.send') }} <span aria-hidden="true">&rarr;</span></button></form><p v-if="formFeedback" class="form-feedback" role="status">{{ formFeedback }}</p></section>
     </div>
-    <section class="share-card section-block"><div><p class="eyebrow">ESPALHE A PALAVRA</p><h2>Compartilhe meu portfólio.</h2></div><button class="share-button" type="button" @click="sharePortfolio">{{ shareLabel }} <span aria-hidden="true">↗</span></button></section>
+    <section class="share-card section-block"><div><p class="eyebrow">{{ t('contact.shareHeading') }}</p><h2>{{ t('contact.shareTitle') }}</h2></div><button class="share-button" type="button" @click="sharePortfolio">{{ shareLabel }} <span aria-hidden="true">&rarr;</span></button></section>
   </PageFrame>
 </template>
 <script setup lang="ts">
@@ -21,36 +20,35 @@ import { logoGithub, logoLinkedin, logoWhatsapp, mailOutline } from 'ionicons/ic
 import BotaoContato from '@/components/BotaoContato.vue';
 import PageFrame from '@/components/PageFrame.vue';
 import SecaoTitulo from '@/components/SecaoTitulo.vue';
+import { useLocale } from '@/composables/useLocale';
 import { perfil } from '@/data/perfil';
+const { t, locale } = useLocale();
 const subject = ref('');
 const message = ref('');
 const formFeedback = ref('');
-const shareLabel = ref('Compartilhar');
-const readyToContact = computed(() => perfil.email !== 'TODO' || perfil.whatsapp !== 'TODO');
-
+const shareKey = ref('contact.share');
+const shareLabel = computed(() => t(shareKey.value));
 function sendMessage() {
-  const body = encodeURIComponent(message.value);
   if (perfil.email !== 'TODO') {
-    window.location.href = `mailto:${perfil.email}?subject=${encodeURIComponent(subject.value)}&body=${body}`;
-    formFeedback.value = 'Sua mensagem está pronta no aplicativo de e-mail.';
+    window.location.href = `mailto:${perfil.email}?subject=${encodeURIComponent(subject.value)}&body=${encodeURIComponent(message.value)}`;
+    formFeedback.value = t('contact.emailReady');
     return;
   }
   if (perfil.whatsapp !== 'TODO') {
     const number = perfil.whatsapp.replace(/\D/g, '');
     window.open(`https://wa.me/${number}?text=${encodeURIComponent(`${subject.value}\n\n${message.value}`)}`, '_blank', 'noopener,noreferrer');
-    formFeedback.value = 'Sua mensagem está pronta no WhatsApp.';
+    formFeedback.value = t('contact.whatsappReady');
     return;
   }
-  formFeedback.value = 'E-mail e WhatsApp estão como TODO. Use o GitHub para entrar em contato enquanto isso.';
+  formFeedback.value = t('contact.missing');
 }
-
 async function sharePortfolio() {
-  const shareData = { title: 'Portfólio — Julio Correa', text: 'Conheça o portfólio de Julio Correa.', url: window.location.origin };
+  const data = { title: 'Portfolio — Julio Correa', text: locale.value === 'pt' ? 'Conheça o portfólio de Julio Correa.' : 'Explore Julio Correa’s portfolio.', url: window.location.origin };
   try {
-    if (navigator.share) await navigator.share(shareData);
-    else if (navigator.clipboard) { await navigator.clipboard.writeText(shareData.url); shareLabel.value = 'Link copiado'; }
-    else shareLabel.value = 'Compartilhamento indisponível';
-  } catch { shareLabel.value = 'Compartilhamento cancelado'; }
+    if (navigator.share) await navigator.share(data);
+    else if (navigator.clipboard) { await navigator.clipboard.writeText(data.url); shareKey.value = 'contact.copied'; }
+    else shareKey.value = 'contact.shareUnavailable';
+  } catch { shareKey.value = 'contact.shareCanceled'; }
 }
 </script>
 <style scoped>

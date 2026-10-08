@@ -1,21 +1,27 @@
 <template>
   <PageFrame>
-    <div class="page-intro"><p class="eyebrow">01 / QUEM SOU</p><h1>Sobre <span>mim.</span></h1><p class="intro-copy">Um pouco do caminho, do que me move e do que estou buscando.</p></div>
+    <div class="page-intro"><p class="eyebrow">01 / {{ t('about.eyebrow') }}</p><h1>{{ t('about.title') }}</h1><p class="intro-copy">{{ t('about.subtitle') }}</p></div>
     <section class="about-grid section-block">
-      <article class="identity-card surface-card"><div class="avatar">JC</div><p class="eyebrow">{{ perfil.cidade }}</p><h2>{{ perfil.nomeCompleto }}</h2><p class="muted">{{ perfil.cargo }}</p><StatusChip label="Disponível para projetos" :online="true" /></article>
-      <div class="about-copy"><SecaoTitulo title="De onde venho" eyebrow="Apresentação" /><p class="body-copy">{{ perfil.bio }}</p><div class="section-subhead"><h3>Como trabalho</h3><span>TODO</span></div><p class="body-copy">TODO</p><RouterLink to="/habilidades" class="section-link">Ver habilidades <span>↗</span></RouterLink></div>
+      <article class="identity-card surface-card"><div class="avatar">JC</div><p class="eyebrow">{{ localProfile.cidade }}</p><h2>{{ localProfile.nomeCompleto }}</h2><p class="muted">{{ localProfile.cargo }}</p><StatusChip :label="t('status.available')" :online="true" /></article>
+      <div class="about-copy"><SecaoTitulo :title="t('about.from')" :eyebrow="t('about.presentation')" /><p class="body-copy">{{ localProfile.bio }}</p><div class="section-subhead"><h3>{{ t('about.work') }}</h3><span>TODO</span></div><p class="body-copy">TODO</p><RouterLink to="/habilidades" class="section-link">{{ t('skills.title') }} <span>&rarr;</span></RouterLink></div>
     </section>
-    <section class="section-block"><SecaoTitulo title="Percurso" eyebrow="Linha do tempo" /><LinhaDoTempo :items="linhaDoTempo" /></section>
-    <section class="surface-card seeking-card section-block"><p class="eyebrow">AGORA</p><h2>O que busco</h2><p>{{ perfil.objetivo }}</p><RouterLink to="/contato" class="section-link">Entre em contato <span>↗</span></RouterLink></section>
+    <section class="section-block" v-reveal><SecaoTitulo :title="t('about.path')" eyebrow="TODO" /><LinhaDoTempo :items="localizedTimeline" /></section>
+    <section class="surface-card seeking-card section-block" v-reveal><p class="eyebrow">{{ t('about.now') }}</p><h2>{{ t('about.seeking') }}</h2><p>{{ localProfile.objetivo }}</p><RouterLink to="/contato" class="section-link">{{ t('nav.contact') }} <span>&rarr;</span></RouterLink></section>
   </PageFrame>
 </template>
 <script setup lang="ts">
+import { computed } from 'vue';
 import LinhaDoTempo from '@/components/LinhaDoTempo.vue';
 import PageFrame from '@/components/PageFrame.vue';
 import SecaoTitulo from '@/components/SecaoTitulo.vue';
 import StatusChip from '@/components/StatusChip.vue';
+import { useLocale } from '@/composables/useLocale';
 import { linhaDoTempo } from '@/data/linha-do-tempo';
 import { perfil } from '@/data/perfil';
+import { localizeProfile, localizeTimeline } from '@/i18n/profileTranslations';
+const { locale, t } = useLocale();
+const localProfile = computed(() => localizeProfile(perfil, locale.value));
+const localizedTimeline = computed(() => linhaDoTempo.map((item) => localizeTimeline(item, locale.value)));
 </script>
 <style scoped>
 .page-intro { max-width: 43rem; padding-top: 2rem; }.page-intro h1 { margin: .8rem 0; font: 600 clamp(3rem, 10vw, 5.5rem)/.98 var(--portfolio-font-display); letter-spacing: -.08em; }.page-intro h1 span { color: var(--portfolio-accent); }.intro-copy,.muted { color: var(--portfolio-text-muted); line-height: 1.6; }

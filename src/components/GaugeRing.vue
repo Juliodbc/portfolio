@@ -1,9 +1,12 @@
-<template><article class="skill-card"><div class="ring" :class="`level-${ringLevel}`" aria-hidden="true"><span>{{ initials }}</span></div><div class="skill-copy"><h3>{{ name }}</h3><p>{{ level }}</p></div></article></template>
+<template><article class="skill-card"><div class="ring" :class="`level-${ringLevel}`" aria-hidden="true"><span>{{ initials }}</span></div><div class="skill-copy"><h3>{{ name }}</h3><p>{{ displayLevel }}</p></div></article></template>
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useLocale } from '@/composables/useLocale';
 const props = defineProps<{ name: string; level: string }>();
+const { t } = useLocale();
 const ringLevel = computed(() => props.level === 'Em estudo' ? 'study' : props.level === 'Base' ? 'base' : props.level === 'Intermediário' ? 'mid' : 'todo');
 const initials = computed(() => props.name.slice(0, 2).toUpperCase());
+const displayLevel = computed(() => props.level === 'Em estudo' ? t('level.studying') : props.level === 'Base' ? t('level.base') : props.level === 'Intermediário' ? t('level.intermediate') : props.level);
 </script>
 <style scoped>
 .skill-card { display: flex; align-items: center; gap: .85rem; min-width: 0; padding: .9rem; border: 1px solid var(--portfolio-border); border-radius: 1.1rem; background: var(--portfolio-surface); }

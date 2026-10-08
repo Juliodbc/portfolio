@@ -1,9 +1,9 @@
 <template>
   <PageFrame>
-    <div class="page-intro"><p class="eyebrow">02 / FERRAMENTAS</p><h1>O que sei <span>fazer.</span></h1><p class="intro-copy">Tecnologias agrupadas por área, com nível qualitativo informado no perfil.</p></div>
-    <section v-for="area in areas" :key="area" class="section-block"><SecaoTitulo :title="area" eyebrow="Habilidades" /><div class="skill-grid"><GaugeRing v-for="skill in getSkills(area)" :key="skill.nome" :name="skill.nome" :level="skill.nivel" /></div></section>
-    <section class="study-panel surface-card section-block"><div><p class="eyebrow">EM MOVIMENTO</p><h2>Estudando agora</h2></div><div class="study-chips"><ChipTecnologia v-for="skill in emEstudo" :key="skill.nome" :label="skill.nome" /></div></section>
-    <p class="skill-note">Os anéis são uma representação visual do nível indicado; “TODO” sinaliza que o nível ainda precisa ser confirmado.</p>
+    <div class="page-intro"><p class="eyebrow">02 / {{ t('skills.eyebrow') }}</p><h1>{{ t('skills.title') }}</h1><p class="intro-copy">{{ t('skills.subtitle') }}</p></div>
+    <section v-for="area in areas" :key="area.value" class="section-block" v-reveal><SecaoTitulo :title="t(area.key)" :eyebrow="t('skills.section')" /><div class="skill-grid"><GaugeRing v-for="skill in getSkills(area.value)" :key="skill.nome" :name="skill.nome" :level="skill.nivel" /></div></section>
+    <section class="study-panel surface-card section-block" v-reveal><div><p class="eyebrow">{{ t('skills.current') }}</p><h2>{{ t('skills.now') }}</h2></div><div class="study-chips"><ChipTecnologia v-for="skill in emEstudo" :key="skill.nome" :label="skill.nome" /></div></section>
+    <p class="skill-note">{{ t('skills.note') }}</p>
   </PageFrame>
 </template>
 <script setup lang="ts">
@@ -11,9 +11,11 @@ import ChipTecnologia from '@/components/ChipTecnologia.vue';
 import GaugeRing from '@/components/GaugeRing.vue';
 import PageFrame from '@/components/PageFrame.vue';
 import SecaoTitulo from '@/components/SecaoTitulo.vue';
+import { useLocale } from '@/composables/useLocale';
 import { habilidades } from '@/data/habilidades';
 import type { AreaHabilidade } from '@/types/Habilidade';
-const areas: AreaHabilidade[] = ['Front-end', 'Mobile', 'Back-end', 'Ferramentas'];
+const { t } = useLocale();
+const areas: Array<{ value: AreaHabilidade; key: string }> = [{ value: 'Front-end', key: 'area.frontend' }, { value: 'Mobile', key: 'area.mobile' }, { value: 'Back-end', key: 'area.backend' }, { value: 'Ferramentas', key: 'area.tools' }];
 const getSkills = (area: AreaHabilidade) => habilidades.filter((skill) => skill.area === area && skill.nivel !== 'Em estudo');
 const emEstudo = habilidades.filter((skill) => skill.nivel === 'Em estudo');
 </script>

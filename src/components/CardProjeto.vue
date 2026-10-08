@@ -1,25 +1,20 @@
 <template>
   <RouterLink :to="`/projetos/${project.id}`" class="project-card">
-    <div class="project-cover" :class="`cover-${coverIndex}`">
-      <span class="cover-index">{{ String(project.ordem).padStart(2, '0') }}</span>
-      <span class="cover-wordmark">{{ wordmark }}</span>
-      <span class="cover-arrow" aria-hidden="true">↗</span>
-    </div>
-    <div class="project-content">
-      <div class="project-topline"><span>{{ project.periodo }}</span><span class="project-status">{{ project.status }}</span></div>
-      <h3>{{ project.titulo }}</h3>
-      <p class="project-summary">{{ project.resumo }}</p>
-      <div class="project-stack"><ChipTecnologia v-for="tech in project.stack.slice(0, 3)" :key="tech" :label="tech" /></div>
-    </div>
+    <div class="project-cover" :class="`cover-${coverIndex}`"><span class="cover-index">{{ String(displayProject.ordem).padStart(2, '0') }}</span><span class="cover-wordmark">{{ wordmark }}</span><span class="cover-arrow" aria-hidden="true">&rarr;</span></div>
+    <div class="project-content"><div class="project-topline"><span>{{ displayProject.periodo }}</span><span class="project-status">{{ displayProject.status }}</span></div><h3>{{ displayProject.titulo }}</h3><p class="project-summary">{{ displayProject.resumo }}</p><div class="project-stack"><ChipTecnologia v-for="tech in displayProject.stack.slice(0, 3)" :key="tech" :label="tech" /></div></div>
   </RouterLink>
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
 import ChipTecnologia from '@/components/ChipTecnologia.vue';
+import { useLocale } from '@/composables/useLocale';
 import type { Projeto } from '@/types/Projeto';
+import { localizeProject } from '@/i18n/projectTranslations';
 const props = defineProps<{ project: Projeto }>();
-const wordmark = computed(() => props.project.titulo.slice(0, 2).toUpperCase());
-const coverIndex = computed(() => Math.abs(props.project.titulo.length % 4));
+const { locale } = useLocale();
+const displayProject = computed(() => localizeProject(props.project, locale.value));
+const wordmark = computed(() => displayProject.value.titulo.slice(0, 2).toUpperCase());
+const coverIndex = computed(() => Math.abs(displayProject.value.titulo.length % 4));
 </script>
 <style scoped>
 .project-card { display: block; overflow: hidden; border: 1px solid var(--portfolio-border); border-radius: var(--radius-card); color: inherit; background: var(--portfolio-surface); text-decoration: none; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }

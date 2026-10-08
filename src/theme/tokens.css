@@ -16,8 +16,8 @@
   --portfolio-online: #34d17a;
 
   /* Typography: bundled font packages can replace these fallbacks in a later phase. */
-  --portfolio-font-display: 'Space Grotesk', 'Arial', sans-serif;
-  --portfolio-font-body: 'Inter', 'Arial', sans-serif;
+  --portfolio-font-display: 'Space Grotesk Variable', 'Arial', sans-serif;
+  --portfolio-font-body: 'Inter Variable', 'Arial', sans-serif;
   --portfolio-font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   /* 8px spacing rhythm */
@@ -52,3 +52,30 @@ body,
   color: var(--portfolio-text);
   font-family: var(--portfolio-font-body);
 }
+
+.theme-light {
+  color-scheme: light;
+  --portfolio-background: #f6f3ef;
+  --portfolio-background-raised: #eee9e2;
+  --portfolio-surface: #ffffff;
+  --portfolio-surface-raised: #fffdfb;
+  --portfolio-border: #dfd8d0;
+  --portfolio-accent: #e84a12;
+  --portfolio-accent-pressed: #cc3e0d;
+  --portfolio-accent-glow: rgb(232 74 18 / 14%);
+  --portfolio-text: #141416;
+  --portfolio-text-muted: #55545a;
+  --portfolio-text-disabled: #77747a;
+  --portfolio-online: #168a4c;
+  --ion-background-color: var(--portfolio-background);
+  --ion-text-color: var(--portfolio-text);
+  --ion-color-primary: var(--portfolio-accent);
+  --ion-color-primary-rgb: 232, 74, 18;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #cc3e0d;
+  --ion-color-primary-tint: #ed602c;
+}
+
+.theme-light body,
+.theme-light #app { background: var(--portfolio-background); color: var(--portfolio-text); }
