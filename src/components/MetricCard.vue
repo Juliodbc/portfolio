@@ -4,8 +4,8 @@ import { computed } from 'vue';
 import { useCountUp } from '@/composables/useCountUp';
 const props = defineProps<{ value: string | number; label: string }>();
 const numericValue = Number(props.value);
-const { value, element } = useCountUp(Number.isFinite(numericValue) ? numericValue : 0);
-const displayValue = computed(() => String(value.value).padStart(String(props.value).length, '0'));
+const { value: countValue, element } = useCountUp(Number.isFinite(numericValue) ? numericValue : 0);
+const displayValue = computed(() => String(countValue.value).padStart(String(props.value).length, '0'));
 </script>
 <style scoped>
 .metric-card { position: relative; display: grid; gap: .3rem; min-height: 6.8rem; padding: 1.1rem 1.25rem; overflow: hidden; border: 1px solid var(--portfolio-border); border-radius: var(--radius-card); background: linear-gradient(145deg, var(--portfolio-surface-raised), var(--portfolio-surface)); }

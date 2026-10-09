@@ -9,6 +9,7 @@ watch(activeLocale, (locale) => {
   if (typeof document !== 'undefined') {
     document.documentElement.lang = locale === 'pt' ? 'pt-BR' : 'en';
     document.title = messages[locale].meta_title;
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', messages[locale].meta_title);
     document.querySelector('meta[name="description"]')?.setAttribute('content', messages[locale].meta_description);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', messages[locale].meta_description);
   }

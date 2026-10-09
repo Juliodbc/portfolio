@@ -3,7 +3,7 @@
     <div class="page-intro"><p class="eyebrow">01 / {{ t('about.eyebrow') }}</p><h1>{{ t('about.title') }}</h1><p class="intro-copy">{{ t('about.subtitle') }}</p></div>
     <section class="about-grid section-block">
       <article class="identity-card surface-card"><div class="avatar">JC</div><p class="eyebrow">{{ localProfile.cidade }}</p><h2>{{ localProfile.nomeCompleto }}</h2><p class="muted">{{ localProfile.cargo }}</p><StatusChip :label="t('status.available')" :online="true" /></article>
-      <div class="about-copy"><SecaoTitulo :title="t('about.from')" :eyebrow="t('about.presentation')" /><p class="body-copy">{{ localProfile.bio }}</p><div class="section-subhead"><h3>{{ t('about.work') }}</h3><span>TODO</span></div><p class="body-copy">TODO</p><RouterLink to="/habilidades" class="section-link">{{ t('skills.title') }} <span>&rarr;</span></RouterLink></div>
+      <div class="about-copy"><SecaoTitulo :title="t('about.from')" :eyebrow="t('about.presentation')" /><p class="body-copy">{{ localProfile.bio }}</p><div class="section-subhead"><h3>{{ t('about.work') }}</h3></div><p class="body-copy">{{ localProfile.comoTrabalho }}</p><RouterLink to="/habilidades" class="section-link">{{ t('skills.title') }} <span>&rarr;</span></RouterLink></div>
     </section>
     <section class="section-block" v-reveal><SecaoTitulo :title="t('about.path')" :eyebrow="t('about.education')" /><LinhaDoTempo :items="localizedTimeline" /></section>
     <section class="surface-card seeking-card section-block" v-reveal><p class="eyebrow">{{ t('about.now') }}</p><h2>{{ t('about.seeking') }}</h2><p>{{ localProfile.objetivo }}</p><RouterLink to="/contato" class="section-link">{{ t('nav.contact') }} <span>&rarr;</span></RouterLink></section>

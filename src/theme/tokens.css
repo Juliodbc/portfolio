@@ -2,18 +2,22 @@
   color-scheme: dark;
 
   /* Brand palette */
-  --portfolio-background: #0a0a0c;
-  --portfolio-background-raised: #17171b;
-  --portfolio-surface: #151518;
-  --portfolio-surface-raised: #1e1e22;
-  --portfolio-border: #2a2a30;
-  --portfolio-accent: #ff5a1f;
-  --portfolio-accent-pressed: #e84a12;
-  --portfolio-accent-glow: rgb(255 90 31 / 18%);
+  --portfolio-background: #090a0d;
+  --portfolio-background-raised: #111318;
+  --portfolio-surface: #111318;
+  --portfolio-surface-raised: #191c22;
+  --portfolio-border: #292d35;
+  --portfolio-border-strong: #3c424d;
+  --portfolio-accent: #ff6b3d;
+  --portfolio-accent-pressed: #e95124;
+  --portfolio-on-accent: #160c08;
+  --portfolio-accent-glow: rgb(255 107 61 / 20%);
   --portfolio-text: #ffffff;
   --portfolio-text-muted: #9a9aa3;
   --portfolio-text-disabled: #5c5c65;
   --portfolio-online: #34d17a;
+  --shadow-card: 0 14px 48px rgb(0 0 0 / 14%);
+  --shadow-card-hover: 0 22px 60px rgb(0 0 0 / 22%), 0 0 36px var(--portfolio-accent-glow);
 
   /* Typography: bundled font packages can replace these fallbacks in a later phase. */
   --portfolio-font-display: 'Space Grotesk Variable', 'Arial', sans-serif;
@@ -31,16 +35,16 @@
   --radius-card: 1.25rem;
   --radius-card-large: 1.5rem;
   --radius-pill: 999px;
-  --content-width: 72rem;
+  --content-width: 76rem;
 
   --ion-background-color: var(--portfolio-background);
   --ion-text-color: var(--portfolio-text);
   --ion-color-primary: var(--portfolio-accent);
-  --ion-color-primary-rgb: 255, 90, 31;
+  --ion-color-primary-rgb: 255, 107, 61;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #e04f1b;
-  --ion-color-primary-tint: #ff6b35;
+  --ion-color-primary-shade: #e95124;
+  --ion-color-primary-tint: #ff7c56;
 }
 
 html,
@@ -55,26 +59,30 @@ body,
 
 .theme-light {
   color-scheme: light;
-  --portfolio-background: #f6f3ef;
-  --portfolio-background-raised: #eee9e2;
+  --portfolio-background: #f5f5f7;
+  --portfolio-background-raised: #ececf1;
   --portfolio-surface: #ffffff;
-  --portfolio-surface-raised: #fffdfb;
-  --portfolio-border: #dfd8d0;
-  --portfolio-accent: #e84a12;
-  --portfolio-accent-pressed: #cc3e0d;
-  --portfolio-accent-glow: rgb(232 74 18 / 14%);
+  --portfolio-surface-raised: #ffffff;
+  --portfolio-border: #dedfe5;
+  --portfolio-border-strong: #c4c6d0;
+  --portfolio-accent: #d94d25;
+  --portfolio-accent-pressed: #b83e1d;
+  --portfolio-on-accent: #141416;
+  --portfolio-accent-glow: rgb(217 77 37 / 12%);
   --portfolio-text: #141416;
   --portfolio-text-muted: #55545a;
   --portfolio-text-disabled: #77747a;
   --portfolio-online: #168a4c;
+  --shadow-card: 0 12px 38px rgb(30 34 44 / 7%);
+  --shadow-card-hover: 0 22px 48px rgb(30 34 44 / 12%), 0 0 30px var(--portfolio-accent-glow);
   --ion-background-color: var(--portfolio-background);
   --ion-text-color: var(--portfolio-text);
   --ion-color-primary: var(--portfolio-accent);
-  --ion-color-primary-rgb: 232, 74, 18;
+  --ion-color-primary-rgb: 217, 77, 37;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #cc3e0d;
-  --ion-color-primary-tint: #ed602c;
+  --ion-color-primary-shade: #b83e1d;
+  --ion-color-primary-tint: #e15d39;
 }
 
 .theme-light body,

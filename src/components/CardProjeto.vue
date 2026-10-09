@@ -26,5 +26,12 @@ const coverIndex = computed(() => Math.abs(displayProject.value.titulo.length % 
 .cover-index,.cover-arrow { position: absolute; top: 1rem; color: var(--portfolio-text-muted); font: .67rem var(--portfolio-font-mono); }.cover-index { left: 1rem; }.cover-arrow { right: 1rem; color: var(--portfolio-accent); font-size: 1.1rem; }
 .cover-wordmark { z-index: 1; color: var(--portfolio-text); font: 600 clamp(2rem, 7vw, 3.2rem)/1 var(--portfolio-font-display); letter-spacing: -.08em; text-shadow: 0 4px 30px rgb(0 0 0 / 42%); }
 .project-content { padding: 1.1rem 1.15rem 1.2rem; }.project-topline { display: flex; align-items: center; justify-content: space-between; gap: .7rem; color: var(--portfolio-text-muted); font: .65rem var(--portfolio-font-mono); }.project-status { overflow: hidden; max-width: 65%; text-overflow: ellipsis; white-space: nowrap; }
+.project-card { position: relative; isolation: isolate; box-shadow: var(--shadow-card); transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .35s, box-shadow .45s; }
+.project-card:hover { transform: translateY(-7px) scale(1.012); box-shadow: var(--shadow-card-hover); }
+.project-cover { min-height: clamp(11rem, 19vw, 14rem); transition: filter .4s; }.project-card:hover .project-cover { filter: saturate(1.18); }
+.project-cover::before,.project-cover::after { transition: transform .9s cubic-bezier(.2,.8,.2,1), border-color .4s; }
+.project-card:hover .project-cover::before { transform: rotate(20deg) scaleY(.52) scale(1.24); }.project-card:hover .project-cover::after { transform: rotate(-25deg) scaleY(.48) scale(1.18); }
+.cover-wordmark { transition: transform .45s cubic-bezier(.2,.8,.2,1), letter-spacing .45s; }.project-card:hover .cover-wordmark { transform: scale(1.08); letter-spacing: -.04em; }
+.project-card:focus-visible { outline-offset: 5px; }
 h3 { margin: .7rem 0 .4rem; font: 600 1.25rem var(--portfolio-font-display); letter-spacing: -.035em; }.project-summary { display: -webkit-box; min-height: 2.5rem; margin: 0; overflow: hidden; color: var(--portfolio-text-muted); font-size: .8rem; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }.project-stack { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
 </style>

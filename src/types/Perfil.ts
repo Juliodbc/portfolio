@@ -5,6 +5,7 @@ export interface Perfil {
   cidade: string;
   instituicao: string;
   bio: string;
+  comoTrabalho: string;
   objetivo: string;
   github: string;
   linkedin: string;

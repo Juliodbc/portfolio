@@ -1,16 +1,15 @@
 /// <reference types="vitest" />
 
-import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
-import path from 'path'
 import { defineConfig } from 'vite'
 
-// https://vitejs.dev/config/
+const base = process.env.VITE_BASE_PATH ?? '/'
+
 export default defineConfig({
+  base,
   plugins: [
     vue(),
-    legacy(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['portfolio-icon.svg'],
@@ -22,19 +21,19 @@ export default defineConfig({
         theme_color: '#0a0a0c',
         background_color: '#0a0a0c',
         display: 'standalone',
-        start_url: '/',
-        scope: '/',
-        icons: [{ src: '/portfolio-icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
+        start_url: base,
+        scope: base,
+        icons: [{ src: `${base}portfolio-icon.svg`, sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,woff2}'],
-        navigateFallback: '/index.html',
+        navigateFallback: `${base}index.html`,
       },
     }),
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': import.meta.dirname + '/src',
     },
   },
   test: {
