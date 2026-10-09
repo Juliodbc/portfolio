@@ -13,5 +13,5 @@ export const perfil: Perfil = {
   linkedin: 'https://www.linkedin.com/in/julio-de-borba-66751835a',
   email: 'deborbajulio@gmail.com',
   whatsapp: '+55 47 988546979',
-  curriculo: 'Não disponível no momento',
+  curriculo: 'curriculo-julio-correa.pdf',
 };

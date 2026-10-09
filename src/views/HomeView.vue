@@ -9,7 +9,7 @@
         <p class="hero-lede">{{ t('home.lede') }}</p>
         <div class="button-row hero-actions">
           <RouterLink to="/projetos" class="action-primary">{{ t('home.projects') }} <span aria-hidden="true">&rarr;</span></RouterLink>
-          <span class="action-secondary" aria-disabled="true" :title="t('home.resumeStatus')">{{ t('home.resume') }} <span>{{ t('home.resumeStatus') }}</span></span>
+          <a class="action-secondary" :href="resumeUrl" :download="perfil.curriculo">{{ t('home.resume') }} <span aria-hidden="true">&darr;</span></a>
         </div>
       </div>
       <div class="hero-art" :aria-label="t('home.artAlt')">
@@ -49,6 +49,7 @@ import githubData from '@/data/projetos.github.json';
 import { localizeProfile } from '@/i18n/profileTranslations';
 const { locale, t } = useLocale();
 const localProfile = computed(() => localizeProfile(perfil, locale.value));
+const resumeUrl = `${import.meta.env.BASE_URL}${perfil.curriculo}`;
 const destaques = computed(() => projetos.filter((projeto) => projeto.destaque).slice(0, 4));
 const projects = projetos;
 const projectsGithub = githubData;

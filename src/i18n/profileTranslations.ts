@@ -10,7 +10,6 @@ export function localizeProfile(profile: Perfil, locale: Locale): Perfil {
     bio: 'I am an IT Technician student at Senac Joinville and a developer in training. I have been practicing web and mobile development with Vue, Ionic, and TypeScript, building projects to turn ideas into clear, useful interfaces.',
     comoTrabalho: 'I like to understand the problem before starting, break work into small steps, and keep code organized. In my projects, I practice reusable components, responsive layouts, and validation of key flows. I am open to learning from code reviews and collaborating with others.',
     objetivo: 'I am looking for an internship or junior role in web or mobile development where I can apply what I know, learn from an experienced team, and contribute to useful solutions. I am especially interested in frontend work and applications built with Vue, TypeScript, and Ionic.',
-    curriculo: 'Not available yet',
   };
 }
 

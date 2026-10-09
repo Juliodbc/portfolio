@@ -26,7 +26,7 @@ export default defineConfig({
         icons: [{ src: `${base}portfolio-icon.svg`, sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,woff2}'],
+        globPatterns: ['**/*.{js,css,html,svg,woff2,pdf}'],
         navigateFallback: `${base}index.html`,
       },
     }),
